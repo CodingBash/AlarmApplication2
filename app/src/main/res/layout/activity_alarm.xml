@@ -1,23 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="1">
 
     <DatePicker
         android:layout_width="match_parent"
-        android:layout_height="110dp"
+        android:layout_height="87dp"
         android:id="@+id/datePicker" />
 
     <TimePicker
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="350dp"
         android:id="@+id/timePicker" />
 
     <Button
         android:text="Set Alarm"
+        android:layout_alignParentLeft="true"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:id="@+id/set_alarm"
+        tools:ignore="HardcodedText,ObsoleteLayoutParam,RtlHardcoded" />
+
+    <Button
+        android:text="Cancel Alarm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/set_alarm" />
+        android:id="@+id/cancel_alarm"
+        tools:gravity="center_vertical"
+        tools:ignore="HardcodedText"
+        tools:textAlignment="center" />
 
 </LinearLayout>

@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         alarmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println();
+                setContentView(R.layout.activity_alarm);
             }
         });
 
