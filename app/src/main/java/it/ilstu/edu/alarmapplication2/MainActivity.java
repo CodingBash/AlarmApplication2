@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         movementButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                goToMovementActivity();
             }
         });
 
@@ -44,6 +44,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void goToAlarmActivity() {
         Intent i = new Intent(this, AlarmActivity.class);
+        startActivity(i);
+    }
+
+    private void goToMovementActivity(){
+        Intent i = new Intent(this, MovementActivity.class);
         startActivity(i);
     }
 }
