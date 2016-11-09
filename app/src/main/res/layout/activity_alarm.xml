@@ -8,11 +8,15 @@
     <DatePicker
         android:layout_width="match_parent"
         android:layout_height="87dp"
-        android:id="@+id/datePicker" />
+        android:id="@+id/datePicker"
+        android:keepScreenOn="true"
+        android:isScrollContainer="true"
+        android:hapticFeedbackEnabled="true"
+        android:forceHasOverlappingRendering="true" />
 
     <TimePicker
-        android:layout_width="match_parent"
-        android:layout_height="350dp"
+        android:layout_width="348dp"
+        android:layout_height="wrap_content"
         android:id="@+id/timePicker" />
 
     <Button
@@ -26,7 +30,7 @@
     <Button
         android:text="Cancel Alarm"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="38dp"
         android:id="@+id/cancel_alarm"
         tools:gravity="center_vertical"
         tools:ignore="HardcodedText"
