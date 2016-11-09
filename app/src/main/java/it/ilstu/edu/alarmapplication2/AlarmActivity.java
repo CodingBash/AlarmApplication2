@@ -64,7 +64,6 @@ public class AlarmActivity extends AppCompatActivity
                 pending_intent = PendingIntent.getBroadcast(AlarmActivity.this, 0,
                         myIntent, PendingIntent.FLAG_UPDATE_CURRENT);
                 alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pending_intent);
-
             }
 
         });

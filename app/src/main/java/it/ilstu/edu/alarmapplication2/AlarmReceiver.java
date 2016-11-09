@@ -27,13 +27,9 @@ public class AlarmReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
-        String state = intent.getExtras().getString("extra");
-        Log.e("MyActivity", "In the receiver with " + state);
-
-        Intent serviceIntent = new Intent(context,PlaySound.class);
-        serviceIntent.putExtra("extra", state);
-
-        context.startService(serviceIntent);
+        Uri uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+        Ringtone ringtone = RingtoneManager.getRingtone(context, uri);
+        ringtone.play();
     }
 
 }
