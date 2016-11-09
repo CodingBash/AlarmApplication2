@@ -1,39 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:weightSum="1">
 
-    <DatePicker
-        android:layout_width="match_parent"
-        android:layout_height="87dp"
-        android:id="@+id/datePicker"
-        android:keepScreenOn="true"
-        android:isScrollContainer="true"
-        android:hapticFeedbackEnabled="true"
-        android:forceHasOverlappingRendering="true" />
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
 
-    <TimePicker
-        android:layout_width="348dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/timePicker" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <Button
-        android:text="Set Alarm"
-        android:layout_alignParentLeft="true"
-        android:layout_width="match_parent"
-        android:layout_height="36dp"
-        android:id="@+id/set_alarm"
-        tools:ignore="HardcodedText,ObsoleteLayoutParam,RtlHardcoded" />
+            <DatePicker
+                android:id="@+id/datePicker"
+                android:layout_width="match_parent"
+                android:layout_height="87dp"
+                android:forceHasOverlappingRendering="true"
+                android:hapticFeedbackEnabled="true"
+                android:isScrollContainer="true"
+                android:keepScreenOn="true" />
 
-    <Button
-        android:text="Cancel Alarm"
-        android:layout_width="match_parent"
-        android:layout_height="38dp"
-        android:id="@+id/cancel_alarm"
-        tools:gravity="center_vertical"
-        tools:ignore="HardcodedText"
-        tools:textAlignment="center" />
+            <TimePicker
+                android:id="@+id/timePicker"
+                android:layout_width="348dp"
+                android:layout_height="wrap_content"
+                android:/>
 
+            <Button
+                android:id="@+id/set_alarm"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:layout_alignParentLeft="true"
+                android:text="Set Alarm"
+                tools:ignore="HardcodedText,ObsoleteLayoutParam,RtlHardcoded" />
+
+            <Button
+                android:id="@+id/cancel_alarm"
+                android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:text="Cancel Alarm"
+                tools:gravity="center_vertical"
+                tools:ignore="HardcodedText"
+                tools:textAlignment="center" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

@@ -22,12 +22,12 @@ public class AlarmActivity extends AppCompatActivity
 {
     private TimePicker alarmTimePicker;
     private Context context;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        addButtonClickListener();
-        final Calendar calender = Calendar.getInstance();
-        final Intent intent = new Intent(this.context, AlarmActivity.class);
+        setContentView(R.layout.activity_alarm);
+
     }
 
     private void addButtonClickListener()

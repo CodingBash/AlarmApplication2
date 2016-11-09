@@ -1,5 +1,6 @@
 package it.ilstu.edu.alarmapplication2;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -19,8 +20,7 @@ public class MainActivity extends AppCompatActivity {
         alarmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setContentView(R.layout.activity_alarm);
-
+                goToAlarmActivity();
             }
         });
 
@@ -40,5 +40,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void goToAlarmActivity() {
+        Intent i = new Intent(this, AlarmActivity.class);
+        startActivity(i);
     }
 }
