@@ -27,8 +27,7 @@
             <TimePicker
                 android:id="@+id/timePicker"
                 android:layout_width="348dp"
-                android:layout_height="wrap_content"
-                android:/>
+                android:layout_height="wrap_content"/>
 
             <Button
                 android:id="@+id/set_alarm"
