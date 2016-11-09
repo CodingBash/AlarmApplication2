@@ -1,11 +1,14 @@
 package it.ilstu.edu.alarmapplication2;
 
 import android.Manifest;
+import android.app.AlarmManager;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.BitmapFactory;
+import android.icu.util.GregorianCalendar;
 import android.location.Criteria;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -18,6 +21,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import java.util.Calendar;
 
 public class MovementActivity extends AppCompatActivity {
 
@@ -55,28 +60,30 @@ public class MovementActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 EditText movementField = (EditText) findViewById(R.id.movementTime);
-                int time = Integer.parseInt(movementField.getText().toString());
-                Log.i("BASH", movementField.getText().toString());
-                setNotification();
+                int timeInMinutes = Integer.parseInt(movementField.getText().toString());
+                setAlarm(timeInMinutes * 1000);
 
             }
         });
     }
 
     public void setNotification() {
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
-        builder.setSmallIcon(android.R.drawable.ic_dialog_alert);
+        ;
+    }
 
-        builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher));
-        builder.setContentTitle("Notifications Title");
-        builder.setContentText("Notification Content Text");
-        builder.setSubText("Notification sub text.");
+    public void setAlarm(int time) {
+        Long alertTime = System.currentTimeMillis() + time;
+        // get a Calendar object with current time
+        Calendar cal = Calendar.getInstance();
+        // add 30 seconds to the calendar object
+        cal.add(Calendar.SECOND, 1);
+        Intent intent = new Intent(this, LocationAlertReciever.class);
+        intent.putExtra("time", time);
+        PendingIntent sender = PendingIntent.getBroadcast(this, 192837, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        NotificationManager notificationManager
-                = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-        // Will display the notification in the notification bar
-        notificationManager.notify(1234, builder.build());
-        Log.i("BASH", "Notification sent");
+        // Get the AlarmManager service
+        AlarmManager am = (AlarmManager) this.getSystemService(this.ALARM_SERVICE);
+        am.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), sender);
+        Log.i("BASH", "Alarm Set");
     }
 }
