@@ -16,6 +16,9 @@
         <receiver android:name=".TimerReceiver" />
 
 
+
+        <receiver android:name=".LocationAlertReciever" />
+
         <activity
             android:name=".MainActivity"
             android:label="MainActivity">
@@ -32,6 +35,10 @@
             android:name=".TimerAlarmActivity"
             android:label="TimerAlarmActivity" />
 
+        <activity
+            android:name=".MovementActivity"
+            android:label="@string/title_activity_movement"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
