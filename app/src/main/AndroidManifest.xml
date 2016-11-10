@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="it.ilstu.edu.alarmapplication2">
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    package="it.ilstu.edu.alarmapplication2" >
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -15,6 +16,7 @@
         android:theme="@style/AppTheme">
 
         <receiver android:name=".LocationAlertReciever" />
+        <receiver android:name=".TimerReceiver" />
 
         <activity
             android:name=".MainActivity"
@@ -25,13 +27,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".AlarmActivity"
             android:label="AlarmActivity" />
+
+        <activity
+            android:name=".TimerAlarmActivity"
+            android:label="TimerAlarmActivity" />
+
         <activity
             android:name=".MovementActivity"
             android:label="@string/title_activity_movement"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
     </application>
 
 </manifest>

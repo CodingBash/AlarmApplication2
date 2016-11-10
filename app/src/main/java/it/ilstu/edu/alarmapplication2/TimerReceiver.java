@@ -8,15 +8,11 @@ import android.graphics.BitmapFactory;
 import android.support.v7.app.NotificationCompat;
 import android.util.Log;
 
-import java.util.Calendar;
-
 /**
- * Created by bbece on 11/9/2016.
+ * Created by Mike on 11/10/2016.
  */
 
-public class LocationAlertReciever extends BroadcastReceiver {
-
-
+public class TimerReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
@@ -24,14 +20,9 @@ public class LocationAlertReciever extends BroadcastReceiver {
         Log.i("BASH", "Notification sent");
 
         Log.i("BASH", "RECIEVED");
-            if (!MovementActivity.getLocationChange()) {
-                Log.i("BASH", "Location didnt change");
-                createNotification(context, "Times up", "5 sec", "as");
-            } else {
-                Log.i("BASH", "Location  change");
-                MovementActivity.setLocationChange(false);
-                MovementActivity.setAlarm(context, intent.getIntExtra("time", 5000));
-            }
+
+        createNotification(context, "Times up", "5 sec", "as");
+
     }
 
     public void createNotification(Context cxt, String msg, String msgText, String msgAlert) {
@@ -51,4 +42,6 @@ public class LocationAlertReciever extends BroadcastReceiver {
         notificationManager.notify(1, builder.build());
         Log.i("BASH", "Notification sent");
     }
+
+
 }
