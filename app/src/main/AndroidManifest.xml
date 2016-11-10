@@ -2,8 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="it.ilstu.edu.alarmapplication2">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
-    
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,18 +13,34 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <receiver android:name=".TimerReceiver" />
+
+
+
+        <receiver android:name=".LocationAlertReciever" />
+
+
         <receiver android:name=".AlarmReceiver" />
         <activity
             android:name=".MainActivity"
             android:label="MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".AlarmActivity"
             android:label="AlarmActivity"></activity>
+        <activity
+            android:name=".TimerAlarmActivity"
+            android:label="TimerAlarmActivity" />
+
+        <activity
+            android:name=".MovementActivity"
+            android:label="@string/title_activity_movement"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

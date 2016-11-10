@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         timerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                goToTimerActivity();
             }
         });
 
@@ -36,14 +36,23 @@ public class MainActivity extends AppCompatActivity {
         movementButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                goToMovementActivity();
             }
         });
 
     }
+    private void goToTimerActivity(){
+        Intent i = new Intent(this, TimerAlarmActivity.class);
+        startActivity(i);
 
+    }
     private void goToAlarmActivity() {
         Intent i = new Intent(this, AlarmActivity.class);
+        startActivity(i);
+    }
+
+    private void goToMovementActivity(){
+        Intent i = new Intent(this, MovementActivity.class);
         startActivity(i);
     }
 }
