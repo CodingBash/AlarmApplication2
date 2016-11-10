@@ -28,7 +28,7 @@ public class LocationAlertReciever extends BroadcastReceiver {
                 Log.i("BASH", "Location didnt changed");
                 createNotification(context, "Times up", "5 sec", "as");
             } else {
-                Log.i("BASH", "Location  change");
+                Log.i("BASH", "Location change");
                 MovementActivity.setLocationChange(false);
                 MovementActivity.setAlarm(context, intent.getIntExtra("time", 5000));
             }
