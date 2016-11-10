@@ -6,6 +6,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.graphics.BitmapFactory;
 import android.icu.util.GregorianCalendar;
@@ -29,7 +30,8 @@ public class MovementActivity extends AppCompatActivity {
     private LocationManager locationManager;
     private Criteria criteria;
     private String provider;
-    private LocationListener locationListener;
+    private MyLocationListener locationListener;
+    private static boolean locationChange = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,29 +63,37 @@ public class MovementActivity extends AppCompatActivity {
             public void onClick(View view) {
                 EditText movementField = (EditText) findViewById(R.id.movementTime);
                 int timeInMinutes = Integer.parseInt(movementField.getText().toString());
-                setAlarm(timeInMinutes * 1000);
+                setAlarmInActivity(timeInMinutes);
 
             }
         });
     }
 
-    public void setNotification() {
-        ;
+    public void setAlarmInActivity(int timeInMinutes) {
+        setAlarm(this, timeInMinutes * 60 * 1000);
     }
 
-    public void setAlarm(int time) {
+    public static void setAlarm(Context context, int time) {
         Long alertTime = System.currentTimeMillis() + time;
         // get a Calendar object with current time
         Calendar cal = Calendar.getInstance();
         // add 30 seconds to the calendar object
-        cal.add(Calendar.SECOND, 1);
-        Intent intent = new Intent(this, LocationAlertReciever.class);
+        cal.add(Calendar.SECOND, alertTime.intValue());
+        Intent intent = new Intent(context, LocationAlertReciever.class);
         intent.putExtra("time", time);
-        PendingIntent sender = PendingIntent.getBroadcast(this, 192837, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent sender = PendingIntent.getBroadcast(context, 1234, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         // Get the AlarmManager service
-        AlarmManager am = (AlarmManager) this.getSystemService(this.ALARM_SERVICE);
-        am.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), sender);
-        Log.i("BASH", "Alarm Set");
+        AlarmManager am = (AlarmManager) context.getSystemService(context.ALARM_SERVICE);
+        am.set(AlarmManager.RTC_WAKEUP, alertTime, sender);
+        Log.i("BASH", "Alarm Set w/" + cal.getTimeInMillis());
+    }
+
+    public static void setLocationChange(boolean input){
+        locationChange = input;
+    }
+
+    public static boolean getLocationChange(){
+        return locationChange;
     }
 }

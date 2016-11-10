@@ -17,6 +17,7 @@ public class MyLocationListener implements LocationListener {
     @Override
     public void onLocationChanged(Location location) {
         if(location != null){
+            MovementActivity.setLocationChange(true);
             Log.i("BASH", "" + location.getLatitude());
             Log.i("BASH", "" + location.getLongitude());
         }

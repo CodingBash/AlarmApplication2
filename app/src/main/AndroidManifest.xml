@@ -13,7 +13,9 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <receiver android:process=":remote" android:name=".LocationAlertReciever"></receiver>
+
+        <receiver android:name=".LocationAlertReciever" />
+
         <activity
             android:name=".MainActivity"
             android:label="MainActivity">

@@ -8,19 +8,30 @@ import android.graphics.BitmapFactory;
 import android.support.v7.app.NotificationCompat;
 import android.util.Log;
 
+import java.util.Calendar;
+
 /**
  * Created by bbece on 11/9/2016.
  */
 
 public class LocationAlertReciever extends BroadcastReceiver {
+
+
     @Override
     public void onReceive(Context context, Intent intent) {
-        Log.i("BASH", "RECIEVED");
-        if (true) {
-            createNotification(context, "Times up", "5 sec", "as");
-        } else {
 
-        }
+        // Will display the notification in the notification bar
+        Log.i("BASH", "Notification sent");
+
+        Log.i("BASH", "RECIEVED");
+            if (!MovementActivity.getLocationChange()) {
+                Log.i("BASH", "Location didnt changed");
+                createNotification(context, "Times up", "5 sec", "as");
+            } else {
+                Log.i("BASH", "Location  change");
+                MovementActivity.setLocationChange(false);
+                MovementActivity.setAlarm(context, intent.getIntExtra("time", 5000));
+            }
     }
 
     public void createNotification(Context cxt, String msg, String msgText, String msgAlert) {
