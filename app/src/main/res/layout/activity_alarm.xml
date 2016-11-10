@@ -42,18 +42,35 @@
                 tools:textAlignment="center"
                 android:elevation="0dp" />
 
-            <EditText
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text"
-                android:text="Enter Alarm Message"
-                android:ems="10"
-                android:id="@+id/userMessage"
-                android:contextClickable="true"
-                tools:textAlignment="center"
-                android:textIsSelectable="true"
-                android:textAllCaps="false"
-                tools:ignore="HardcodedText,UnusedAttribute" />
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:layout_width="225dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:text="Enter Alarm Message"
+                    android:ems="10"
+                    android:id="@+id/userMessage"
+                    android:contextClickable="true"
+                    tools:textAlignment="center"
+                    android:textIsSelectable="true"
+                    android:textAllCaps="false"
+                    tools:ignore="HardcodedText,UnusedAttribute"
+                    android:layout_weight="0.38"
+                    android:selectAllOnFocus="true" />
+
+                <CheckBox
+                    android:text="Recursive"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/recursiveCheckBox"
+                    android:layout_weight="1"
+                    tools:ignore="HardcodedText" />
+
+            </LinearLayout>
 
             <DatePicker
                 android:layout_width="match_parent"
