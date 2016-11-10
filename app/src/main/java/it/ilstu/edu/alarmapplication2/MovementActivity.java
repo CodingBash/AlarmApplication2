@@ -62,18 +62,22 @@ public class MovementActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 EditText movementField = (EditText) findViewById(R.id.movementTime);
+                EditText movementFieldSeconds = (EditText) findViewById(R.id.movementTimeSeconds);
+                EditText movementCustomMessage = (EditText) findViewById(R.id.customMovementMessage);
                 int timeInMinutes = Integer.parseInt(movementField.getText().toString());
-                setAlarmInActivity(timeInMinutes);
+                int timeInSeconds = Integer.parseInt(movementFieldSeconds.getText().toString());
+                String customMessage = movementCustomMessage.getText().toString();
+                setAlarmInActivity(((timeInMinutes*60) + timeInSeconds) * 1000, customMessage);
 
             }
         });
     }
 
-    public void setAlarmInActivity(int timeInMinutes) {
-        setAlarm(this, timeInMinutes * 60 * 1000);
+    public void setAlarmInActivity(int time, String customMessage) {
+        setAlarm(this, time, customMessage);
     }
 
-    public static void setAlarm(Context context, int time) {
+    public static void setAlarm(Context context, int time, String customMessage) {
         Long alertTime = System.currentTimeMillis() + time;
         // get a Calendar object with current time
         Calendar cal = Calendar.getInstance();
@@ -81,12 +85,13 @@ public class MovementActivity extends AppCompatActivity {
         cal.add(Calendar.SECOND, alertTime.intValue());
         Intent intent = new Intent(context, LocationAlertReciever.class);
         intent.putExtra("time", time);
+        intent.putExtra("message", customMessage);
         PendingIntent sender = PendingIntent.getBroadcast(context, 1234, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         // Get the AlarmManager service
         AlarmManager am = (AlarmManager) context.getSystemService(context.ALARM_SERVICE);
         am.set(AlarmManager.RTC_WAKEUP, alertTime, sender);
-        Log.i("BASH", "Alarm Set w/" + cal.getTimeInMillis());
+        Log.i("BASH", "Alarm Set w/ " + cal.getTimeInMillis());
     }
 
     public static void setLocationChange(boolean input){

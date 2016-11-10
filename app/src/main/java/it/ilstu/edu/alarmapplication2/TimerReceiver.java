@@ -16,7 +16,6 @@ public class TimerReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         Log.i("BASH", "RECIEVED");
-
         createNotification(context, intent.getStringExtra("message"));
 
     }

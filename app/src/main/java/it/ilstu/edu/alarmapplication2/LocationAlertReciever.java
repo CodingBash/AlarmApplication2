@@ -21,27 +21,25 @@ public class LocationAlertReciever extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
 
         // Will display the notification in the notification bar
-        Log.i("BASH", "Notification sent");
 
-        Log.i("BASH", "RECIEVED");
-            if (!MovementActivity.getLocationChange()) {
-                Log.i("BASH", "Location didnt changed");
-                createNotification(context, "Times up", "5 sec", "as");
-            } else {
-                Log.i("BASH", "Location change");
-                MovementActivity.setLocationChange(false);
-                MovementActivity.setAlarm(context, intent.getIntExtra("time", 5000));
-            }
+        Log.i("BASH", "Movement Alarm Received. Processing. . .");
+        if (!MovementActivity.getLocationChange()) {
+            Log.i("BASH", "Location did not change - Sending Notification!");
+            createNotification(context, intent.getStringExtra("message"));
+        } else {
+            Log.i("BASH", "Location change - Resetting Alarm");
+            MovementActivity.setLocationChange(false);
+            MovementActivity.setAlarm(context, intent.getIntExtra("time", 5000), intent.getStringExtra("message"));
+        }
     }
 
-    public void createNotification(Context cxt, String msg, String msgText, String msgAlert) {
+    public void createNotification(Context cxt, String customMessage) {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(cxt);
         builder.setSmallIcon(android.R.drawable.ic_dialog_alert);
 
         builder.setLargeIcon(BitmapFactory.decodeResource(cxt.getResources(), R.mipmap.ic_launcher));
-        builder.setContentTitle("Notifications Title");
-        builder.setContentText("Notification Content Text");
-        builder.setSubText("Notification sub text.");
+        builder.setContentTitle("Get Moving!");
+        builder.setContentText(customMessage);
         builder.setDefaults(NotificationCompat.DEFAULT_SOUND);
 
         NotificationManager notificationManager
@@ -49,6 +47,6 @@ public class LocationAlertReciever extends BroadcastReceiver {
 
         // Will display the notification in the notification bar
         notificationManager.notify(1, builder.build());
-        Log.i("BASH", "Notification sent");
+        Log.i("BASH", "Movement Notification Sent");
     }
 }

@@ -80,6 +80,6 @@ public class TimerAlarmActivity  extends AppCompatActivity
         // Get the AlarmManager service
         AlarmManager am = (AlarmManager) context.getSystemService(context.ALARM_SERVICE);
         am.set(AlarmManager.RTC_WAKEUP, alertTime, sender);
-        Log.i("BASH", "Alarm Set w/" + cal.getTimeInMillis());
+        Log.i("BASH", "Alarm Set w/ " + cal.getTimeInMillis());
     }
 }
